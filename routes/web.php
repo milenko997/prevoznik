@@ -14,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if (Auth::check()) {
+        $header = 'Dobrodošao, ' . Auth::user()->name;
+    } else {
+        $header = 'Dobrodošli na naš sajt!';
+    }
+
+    return view('homepage', compact('header'));
 });
 
 Route::get('/dashboard', function () {
