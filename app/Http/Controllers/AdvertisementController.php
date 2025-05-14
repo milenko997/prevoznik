@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Advertisement;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,10 +14,17 @@ class AdvertisementController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+
+    public function publicIndex()
     {
-        $ads = Advertisement::where('user_id', Auth::id())->get();
-        return view('advertisements.index', compact('ads'));
+        $ads = Advertisement::latest()->get();
+        return view('advertisements.public-index', compact('ads'));
+    }
+
+    public function userIndex()
+    {
+        $ads = Advertisement::where('user_id', Auth::id())->latest()->get();
+        return view('advertisements.user-index', compact('ads'));
     }
 
     /**

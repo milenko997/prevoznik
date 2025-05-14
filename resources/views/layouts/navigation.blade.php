@@ -19,8 +19,8 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @auth
-                        <x-nav-link :href="route('advertisements.index')" :active="request()->routeIs('advertisements.index')">
-                            {{ __('Your Advertisements') }}
+                        <x-nav-link :href="route('advertisements.user')" :active="request()->routeIs('advertisements.user')">
+                            {{ __('My Advertisements') }}
                         </x-nav-link>
                     @endauth
                 </div>
