@@ -12,9 +12,17 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/" :active="request()->routeIs('/')">
+                        {{ __('Home') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @auth
+                        <x-nav-link :href="route('advertisements.index')" :active="request()->routeIs('advertisements.index')">
+                            {{ __('Your Advertisements') }}
+                        </x-nav-link>
+                    @endauth
                 </div>
                 <div class="relative flex items-top justify-center">
                     @if (Route::has('login'))
