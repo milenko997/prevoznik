@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Advertisement;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AdvertisementController extends Controller
 {
@@ -57,25 +57,36 @@ class AdvertisementController extends Controller
             $imagePath = $request->file('image')->store('ads', 'public');
         }
 
+        $baseSlug = Str::slug($request->title, '_');
+        $slug = $baseSlug;
+        $counter = 1;
+
+        while(Advertisement::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '_' . $counter;
+            $counter++;
+        }
+
         Advertisement::create([
             'user_id' => Auth::id(),
             'title' => $request->title,
+            'slug' => $slug,
             'description' => $request->description,
             'image' => $imagePath,
         ]);
 
-        return redirect()->route('advertisements.index')->with('success', 'Advertisement created successfully.');
+        return redirect()->route('advertisements.user')->with('success', 'Advertisement created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  string  $slug
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $ad = Advertisement::where('slug', $slug)->firstOrFail();
+        return view('advertisements.show', compact('ad'));
     }
 
     /**

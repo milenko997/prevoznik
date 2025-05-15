@@ -27,4 +27,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/my-advertisements', [AdvertisementController::class, 'userIndex'])->name('advertisements.user');
 });
 
+Route::get('/advertisements/{slug}', [AdvertisementController::class, 'show'])->name('advertisements.show');
+
 require __DIR__.'/auth.php';
