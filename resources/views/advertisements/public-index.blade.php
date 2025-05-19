@@ -11,14 +11,16 @@
                 <div class="p-6 bg-white">
                     @foreach($ads as $ad)
                         <div class="border p-4 mb-4 rounded shadow">
-                            <h2 class="text-xl font-semibold">{{ $ad->title }}</h2>
-                            <p class="text-gray-700 mb-2">{{ $ad->description }}</p>
+                            <a href="/advertisements/{{ $ad->slug }}">
+                                <h2 class="text-xl font-semibold">{{ $ad->title }}</h2>
+                                <p class="text-gray-700 mb-2">{{ $ad->description }}</p>
 
-                            @if($ad->image)
-                                <img src="{{ asset('storage/' . $ad->image) }}" alt="image" class="w-48 h-auto">
-                            @endif
+                                @if($ad->image)
+                                    <img src="{{ asset('storage/' . $ad->image) }}" alt="image" class="w-48 h-auto">
+                                @endif
 
-                            <p class="text-sm text-gray-500 mt-2">Posted: {{ $ad->created_at->format('d.m.Y') }}</p>
+                                <p class="text-sm text-gray-500 mt-2">Posted: {{ $ad->created_at->format('d.m.Y') }}</p>
+                            </a>
                         </div>
                     @endforeach
                 </div>
