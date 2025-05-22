@@ -92,24 +92,56 @@ class AdvertisementController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  string  $slug
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $ad = Advertisement::where('slug', $slug)->firstOrFail();
+
+        return view('advertisements.edit', compact('ad'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  string  $slug
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $ad = Advertisement::where('slug', $slug)->firstOrFail();
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $oldTitle = $ad->title;
+        $ad->title = $request->title;
+        $ad->description = $request->description;
+
+        if ($request->title !== $oldTitle) {
+            $baseSlug = Str::slug($request->title, '_');
+            $slugToCheck = $baseSlug;
+            $counter = 1;
+
+            while (Advertisement::where('slug', $slugToCheck)->where('id', '!=', $ad->id)->exists()) {
+                $slugToCheck = $baseSlug . '_' . $counter++;
+            }
+
+            $ad->slug = $slugToCheck;
+        }
+
+        if ($request->hasFile('image')) {
+            $ad->image = $request->file('image')->store('ads', 'public');
+        }
+
+        $ad->save();
+
+        return redirect()->route('advertisements.show', $ad->slug)->with('success', 'Advertisement updated successfully.');
     }
 
     /**

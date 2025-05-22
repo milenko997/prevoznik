@@ -22,7 +22,7 @@
                                 <p class="text-sm text-gray-500 mt-2">Posted: {{ $ad->created_at->format('d.m.Y') }}</p>
                             </div>
                             <div>
-                                <x-button>EDIT</x-button>
+                                <x-button href="{{ route('advertisements.edit', $ad->slug) }}" >EDIT</x-button>
                                 <x-button class="bg-danger">DELETE</x-button>
                             </div>
                         </div>

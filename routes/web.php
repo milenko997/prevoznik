@@ -25,6 +25,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/advertisements/create', [AdvertisementController::class, 'create'])->name('advertisements.create');
     Route::post('/advertisements', [AdvertisementController::class, 'store'])->name('advertisements.store');
     Route::get('/my-advertisements', [AdvertisementController::class, 'userIndex'])->name('advertisements.user');
+    Route::get('/advertisements/edit/{slug}', [AdvertisementController::class, 'edit'])->name('advertisements.edit');
+    Route::put('/advertisements/{slug}/update', [AdvertisementController::class, 'update'])->name('advertisements.update');
 });
 
 Route::get('/advertisements/{slug}', [AdvertisementController::class, 'show'])->name('advertisements.show');
