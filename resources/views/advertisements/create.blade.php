@@ -11,16 +11,16 @@
                 <div class="p-6 bg-white">
                     <form action="{{ route('advertisements.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <x-label>Title:</x-label>
+                        <x-label>{{ __('Title') }}:</x-label>
                         <x-input name="title" class="mb-2"></x-input>
 
-                        <x-label>Description:</x-label>
+                        <x-label>{{ __('Description') }}:</x-label>
                         <x-textarea name="description" class="mb-2"></x-textarea>
 
-                        <x-label>Images:</x-label>
+                        <x-label>{{ __('Images') }}:</x-label>
                         <input type="file" name="image" multiple class="mb-4"><br>
 
-                        <x-button>Save</x-button>
+                        <x-button>{{ __('Save') }}</x-button>
                     </form>
                 </div>
             </div>

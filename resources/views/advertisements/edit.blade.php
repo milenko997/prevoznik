@@ -23,7 +23,7 @@
 
                         <input type="file" name="image" class="mb-4"><br>
 
-                        <x-button>Update</x-button>
+                        <x-button>{{ __('Update') }}</x-button>
                     </form>
                 </div>
             </div>
