@@ -99,6 +99,10 @@ class AdvertisementController extends Controller
     {
         $ad = Advertisement::where('slug', $slug)->firstOrFail();
 
+        if ((int) Auth::id() !== (int) $ad->user_id) {
+            abort(403, 'You do not have permission to edit this ad.');
+        }
+
         return view('advertisements.edit', compact('ad'));
     }
 
@@ -112,6 +116,10 @@ class AdvertisementController extends Controller
     public function update(Request $request, $slug)
     {
         $ad = Advertisement::where('slug', $slug)->firstOrFail();
+
+        if ((int) Auth::id() !== (int) $ad->user_id) {
+            abort(403, 'You do not have permission to edit this ad.');
+        }
 
         $request->validate([
             'title' => 'required|string|max:255',
@@ -153,6 +161,11 @@ class AdvertisementController extends Controller
     public function destroy($id)
     {
         $ad = Advertisement::findOrFail($id);
+
+        if ((int) Auth::id() !== (int) $ad->user_id) {
+            abort(403, 'You do not have permission to edit this ad.');
+        }
+
         $ad->delete();
 
         return redirect()->route('advertisements.user')->with('success', 'Advertisement deleted (soft) successfully.');
