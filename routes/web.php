@@ -16,10 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AdvertisementController::class, 'publicIndex'])->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/advertisements', [AdvertisementController::class, 'publicIndex'])->name('advertisements.public');
     Route::get('/advertisements/create', [AdvertisementController::class, 'create'])->name('advertisements.create');

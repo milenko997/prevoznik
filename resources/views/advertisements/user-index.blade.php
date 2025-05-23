@@ -9,6 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white">
+                    <x-button href="/advertisements/create" class="mb-4">Add Advertisement</x-button>
+
                     @foreach($ads as $ad)
                         <div class="border p-4 mb-4 rounded shadow d-flex justify-content-between align-items-center">
                             <div class="">
