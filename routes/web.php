@@ -24,6 +24,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/advertisements/edit/{slug}', [AdvertisementController::class, 'edit'])->name('advertisements.edit');
     Route::put('/advertisements/{slug}/update', [AdvertisementController::class, 'update'])->name('advertisements.update');
     Route::delete('/advertisements/{id}', [AdvertisementController::class, 'destroy'])->name('advertisements.destroy');
+    Route::get('/advertisements/trash', [AdvertisementController::class, 'trash'])->name('advertisements.trash');
 });
 
 Route::get('/advertisements/{slug}', [AdvertisementController::class, 'show'])->name('advertisements.show');

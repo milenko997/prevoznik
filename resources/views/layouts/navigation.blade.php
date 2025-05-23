@@ -19,6 +19,10 @@
                         <x-nav-link :href="route('advertisements.user')" :active="request()->routeIs('advertisements.user')">
                             {{ __('My Advertisements') }}
                         </x-nav-link>
+
+                        <x-nav-link :href="route('advertisements.trash')" :active="request()->routeIs('advertisements.trash')">
+                            {{ __('Trash') }}
+                        </x-nav-link>
                     @endauth
                 </div>
                 <div class="relative flex items-top justify-center">
