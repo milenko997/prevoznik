@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/advertisements/{slug}/update', [AdvertisementController::class, 'update'])->name('advertisements.update');
     Route::delete('/advertisements/{id}', [AdvertisementController::class, 'destroy'])->name('advertisements.destroy');
     Route::get('/advertisements/trash', [AdvertisementController::class, 'trash'])->name('advertisements.trash');
+    Route::delete('/advertisements/force-delete/{id}', [AdvertisementController::class, 'forceDelete'])->name('advertisements.forceDelete');
 });
 
 Route::get('/advertisements/{slug}', [AdvertisementController::class, 'show'])->name('advertisements.show');

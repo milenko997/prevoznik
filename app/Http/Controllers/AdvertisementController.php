@@ -179,4 +179,12 @@ class AdvertisementController extends Controller
 
         return view('advertisements.trash', compact('ads'));
     }
+
+    public function forceDelete($id) {
+        $ad = Advertisement::onlyTrashed()->findOrFail($id);
+
+        $ad->forceDelete();
+
+        return redirect()->route('advertisements.trash')->with('success', 'Advertisement deleted (soft) successfully.');
+    }
 }

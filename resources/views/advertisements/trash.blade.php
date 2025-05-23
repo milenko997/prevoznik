@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white">
                     @foreach($ads as $ad)
-                        <div class="border p-4 mb-4 rounded shadow">
+                        <div class="border p-4 mb-4 rounded shadow flex justify-content-between align-items-center">
                             <div>
                                 <h2 class="text-xl font-semibold">{{ $ad->title }}</h2>
                                 <p class="text-gray-700 mb-2">{{ $ad->description }}</p>
@@ -20,6 +20,16 @@
                                 @endif
 
                                 <p class="text-sm text-gray-500 mt-2">{{ __('Posted') }}: {{ $ad->created_at->format('d.m.Y') }}</p>
+                            </div>
+
+                            <div>
+                                <x-button class="mb-2" href="{{ route('advertisements.edit', $ad->slug) }}" >{{ __('RESTORE') }}</x-button>
+
+                                <form action="{{ route('advertisements.forceDelete', $ad->id) }}" method="POST" onsubmit="return confirm('Are you sure? This cannot be undone.')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <x-button class="bg-danger">{{ __('PERMANENTLY DELETE') }}</x-button>
+                                </form>
                             </div>
                         </div>
                     @endforeach
