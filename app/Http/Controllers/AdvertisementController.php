@@ -187,4 +187,12 @@ class AdvertisementController extends Controller
 
         return redirect()->route('advertisements.trash')->with('success', 'Advertisement deleted (soft) successfully.');
     }
+
+    public function restore($id) {
+        $ad = Advertisement::onlyTrashed()->findOrFail($id);
+
+        $ad->restore();
+
+        return redirect()->route('advertisements.trash')->with('success', 'Advertisement restored successfully.');
+    }
 }

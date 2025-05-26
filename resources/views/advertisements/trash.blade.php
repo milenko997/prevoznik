@@ -23,7 +23,11 @@
                             </div>
 
                             <div>
-                                <x-button class="mb-2" href="{{ route('advertisements.edit', $ad->slug) }}" >{{ __('RESTORE') }}</x-button>
+                                <form action="{{ route('advertisements.restore', $ad->id) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <x-button class="mb-2">{{ __('RESTORE') }}</x-button>
+                                </form>
 
                                 <form action="{{ route('advertisements.forceDelete', $ad->id) }}" method="POST" onsubmit="return confirm('Are you sure? This cannot be undone.')">
                                     @csrf

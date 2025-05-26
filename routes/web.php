@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/advertisements/{id}', [AdvertisementController::class, 'destroy'])->name('advertisements.destroy');
     Route::get('/advertisements/trash', [AdvertisementController::class, 'trash'])->name('advertisements.trash');
     Route::delete('/advertisements/force-delete/{id}', [AdvertisementController::class, 'forceDelete'])->name('advertisements.forceDelete');
+    Route::patch('/advertisements/{id}/restore', [AdvertisementController::class, 'restore'])->name('advertisements.restore');
 });
 
 Route::get('/advertisements/{slug}', [AdvertisementController::class, 'show'])->name('advertisements.show');
