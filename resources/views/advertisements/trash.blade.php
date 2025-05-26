@@ -19,7 +19,7 @@
                                     <img src="{{ asset('storage/' . $ad->image) }}" alt="image" class="w-48 h-auto">
                                 @endif
 
-                                <p class="text-sm text-gray-500 mt-2">{{ __('Posted') }}: {{ $ad->created_at->format('d.m.Y') }}</p>
+                                <p class="text-sm text-gray-500 mt-2">{{ __('Deleted') }}: {{ $ad->deleted_at->format('d.m.Y') }}</p>
                             </div>
 
                             <div>
