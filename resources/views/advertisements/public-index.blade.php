@@ -13,10 +13,13 @@
                         <div class="border p-4 mb-4 rounded shadow">
                             <a href="/advertisements/{{ $ad->slug }}">
                                 <h2 class="text-xl font-semibold">{{ $ad->title }}</h2>
+
                                 <p class="text-gray-700 mb-2">{{ $ad->description }}</p>
 
+                                <a href="tel:{{ $ad->phone }}" class="text-gray-700 mb-4">{{ __('Phone') }}: {{ $ad->phone }}</a>
+
                                 @if($ad->image)
-                                    <img src="{{ asset('storage/' . $ad->image) }}" alt="image" class="w-48 h-auto">
+                                    <img src="{{ asset('storage/' . $ad->image) }}" alt="image" class="w-48 h-auto mt-2">
                                 @endif
 
                                 <p class="text-sm text-gray-500 mt-2">{{ __('Author') }}: {{ $ad->user->name }}</p>

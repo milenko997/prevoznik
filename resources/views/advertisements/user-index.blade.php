@@ -20,6 +20,8 @@
                                     <h2 class="text-xl font-semibold">{{ $ad->title }}</h2>
                                     <p class="text-gray-700 mb-2">{{ $ad->description }}</p>
 
+                                    <p class="text-gray-700 mb-2">{{ $ad->phone }}</p>
+
                                     @if($ad->image)
                                         <img src="{{ asset('storage/' . $ad->image) }}" alt="image" class="w-48 h-auto">
                                     @endif

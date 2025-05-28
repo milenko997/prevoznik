@@ -17,11 +17,24 @@
                         <x-label>{{ __('Description') }}:</x-label>
                         <x-textarea name="description" class="mb-2"></x-textarea>
 
-                        <x-label>{{ __('Images') }}:</x-label>
-                        <input type="file" name="image" multiple class="mb-4"><br>
+                        <x-label>{{ __('Phone') }}:</x-label>
+                        <x-input name="phone" class="mb-2" maxlength="15"></x-input>
+
+                        <x-label>{{ __('Image') }}:</x-label>
+                        <input type="file" name="image" class="mb-4"><br>
 
                         <x-button>{{ __('Save') }}</x-button>
                     </form>
+
+                    @if ($errors->any())
+                        <div class="bg-red-100 text-red-700 p-3 mb-4">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

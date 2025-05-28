@@ -16,6 +16,7 @@ class Advertisement extends Model
         'title',
         'slug',
         'description',
+        'phone',
         'image',
     ];
 

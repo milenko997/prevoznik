@@ -15,6 +15,8 @@
 
                     <p class="text-gray-700 mb-2">{{ $ad->description }}</p>
 
+                    <a href="tel:{{ $ad->phone }}" class="text-gray-700 mb-2">{{ __('Phone') }}: {{ $ad->phone }}</a>
+
                     <p class="text-sm text-gray-500 mt-2">{{ __('Author') }}: {{ $ad->user->name }}</p>
 
                     @if ($ad->created_at != $ad->updated_at)

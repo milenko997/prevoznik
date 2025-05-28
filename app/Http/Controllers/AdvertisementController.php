@@ -48,6 +48,7 @@ class AdvertisementController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
+            'phone' => 'required|string|min:8|max:15',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -71,6 +72,7 @@ class AdvertisementController extends Controller
             'title' => $request->title,
             'slug' => $slug,
             'description' => $request->description,
+            'phone' => $request->phone,
             'image' => $imagePath,
         ]);
 
@@ -124,6 +126,7 @@ class AdvertisementController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
+            'phone' => 'required|string|min:8|max:15',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
