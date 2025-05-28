@@ -15,11 +15,13 @@
 
                     <p class="text-gray-700 mb-2">{{ $ad->description }}</p>
 
-                        @if ($ad->created_at != $ad->updated_at)
-                            <p class="text-sm text-gray-500 mt-2">Updated: {{ $ad->updated_at->format('d.m.Y') }}</p>
-                        @else
-                            <p class="text-sm text-gray-500 mt-2">Posted: {{ $ad->created_at->format('d.m.Y') }}</p>
-                        @endif
+                    <p class="text-sm text-gray-500 mt-2">{{ __('Author') }}: {{ $ad->user->name }}</p>
+
+                    @if ($ad->created_at != $ad->updated_at)
+                        <p class="text-sm text-gray-500 mt-2">Updated: {{ $ad->updated_at->format('d.m.Y') }}</p>
+                    @else
+                        <p class="text-sm text-gray-500 mt-2">Posted: {{ $ad->created_at->format('d.m.Y') }}</p>
+                    @endif
                 </div>
             </div>
         </div>
