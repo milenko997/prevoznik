@@ -55,7 +55,7 @@ class AdvertisementController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'phone' => 'required|string|min:8|max:15',
-            'location' => 'required|string',
+            'location' => 'required|exists:cities,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -108,12 +108,13 @@ class AdvertisementController extends Controller
     public function edit($slug)
     {
         $ad = Advertisement::where('slug', $slug)->firstOrFail();
+        $cities = City::orderBy('name')->get();
 
         if ((int) Auth::id() !== (int) $ad->user_id) {
             abort(403, 'You do not have permission to edit this ad.');
         }
 
-        return view('advertisements.edit', compact('ad'));
+        return view('advertisements.edit', compact('ad', 'cities'));
     }
 
     /**
@@ -135,13 +136,14 @@ class AdvertisementController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'phone' => 'required|string|min:8|max:15',
-            'location' => 'required|string',
+            'location' => 'required|exists:cities,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $oldTitle = $ad->title;
         $ad->title = $request->title;
         $ad->description = $request->description;
+        $ad->location = $request->location;
 
         if ($request->title !== $oldTitle) {
             $baseSlug = Str::slug($request->title, '_');
