@@ -20,6 +20,14 @@
                         <x-label>{{ __('Phone') }}:</x-label>
                         <x-input name="phone" class="mb-2" maxlength="15"></x-input>
 
+                        <x-label>{{ __('Location') }}:</x-label>
+                        <select name="location" class="mb-2">
+                            <option value="" selected disabled>{{ __('Select City') }}</option>
+                            @foreach($cities as $city)
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach
+                        </select>
+
                         <x-label>{{ __('Image') }}:</x-label>
                         <input type="file" name="image" class="mb-4"><br>
 

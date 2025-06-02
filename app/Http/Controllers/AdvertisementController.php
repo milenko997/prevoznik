@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Advertisement;
+use App\Models\City;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -34,7 +35,8 @@ class AdvertisementController extends Controller
      */
     public function create()
     {
-        return view('advertisements.create');
+        $cities = City::orderBy('name')->take(20)->get();
+        return view('advertisements.create', compact('cities'));
     }
 
     /**
@@ -49,6 +51,7 @@ class AdvertisementController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'phone' => 'required|string|min:8|max:15',
+            'location' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -73,6 +76,7 @@ class AdvertisementController extends Controller
             'slug' => $slug,
             'description' => $request->description,
             'phone' => $request->phone,
+            'location' => $request->location,
             'image' => $imagePath,
         ]);
 
@@ -127,6 +131,7 @@ class AdvertisementController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'phone' => 'required|string|min:8|max:15',
+            'location' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 

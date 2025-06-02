@@ -17,6 +17,7 @@ class Advertisement extends Model
         'slug',
         'description',
         'phone',
+        'location',
         'image',
     ];
 
