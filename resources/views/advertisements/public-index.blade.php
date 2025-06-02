@@ -22,6 +22,8 @@
                                     <img src="{{ asset('storage/' . $ad->image) }}" alt="image" class="w-48 h-auto mt-2">
                                 @endif
 
+                                <p class="text-sm text-gray-500 mt-2">{{ __('Location') }}: {{ $ad->city->name }}</p>
+
                                 <p class="text-sm text-gray-500 mt-2">{{ __('Author') }}: {{ $ad->user->name }}</p>
 
                                 @if ($ad->created_at != $ad->updated_at)
