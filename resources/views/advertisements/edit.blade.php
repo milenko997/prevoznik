@@ -21,10 +21,6 @@
                         <x-label>{{ __('Phone') }}:</x-label>
                         <x-input name="phone" value="{{ old('phone', $ad->phone) }}" class="mb-2" maxlength="15"></x-input>
 
-{{--                        @foreach($cities as $city)--}}
-{{--                            {{$city->id}}--}}
-{{--                        @endforeach--}}
-
                         <x-label>{{ __('Location') }}:</x-label>
                         <select name="location" class="mb-4">
                             @foreach($cities as $city)
