@@ -24,6 +24,7 @@ class AdvertisementsSeeder extends Seeder
                 'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
                 'phone' => $faker->phoneNumber,
                 'location' => $faker->numberBetween($min = 1, $max = 20),
+                'image' => 'ads/tsRtC0igUZR40U3MQEOD8KNaZrE9iHA5FRrKx3Hs.png',
             ]);
         }
     }
