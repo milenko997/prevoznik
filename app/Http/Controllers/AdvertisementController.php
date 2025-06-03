@@ -19,7 +19,6 @@ class AdvertisementController extends Controller
     public function publicIndex()
     {
         $ads = Advertisement::with('city')
-            ->where('user_id', Auth::id())
             ->latest()
             ->get();
 
